@@ -3,8 +3,9 @@ stages:
 
 test:
   stage: test
-  image: python:3.12  
+  image: python:3.12-alpine
   before_script:
+    - pip install --upgrade pip
     - pip install hatch  
   script:
     - hatch test         
