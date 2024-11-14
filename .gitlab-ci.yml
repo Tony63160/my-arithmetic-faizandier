@@ -10,7 +10,7 @@ test:
     - pip install --upgrade pip
     - pip install hatch pytest pytest-cov
   script:
-    - pytest --cov=<nom_du_module> --cov-report=term-missing --cov-report=xml  # Remplacez <nom_du_module> par le nom de votre module
+    - pytest --cov=test_gcd.py --cov-report=term-missing --cov-report=xml  
   coverage: '/\d+%/'
 
 
