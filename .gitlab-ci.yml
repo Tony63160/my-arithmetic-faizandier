@@ -12,7 +12,7 @@ test:
     - pip install hatch pytest pytest-cov
   script:
     - pytest --cov=src/my_arithmetic_faizandier --cov-report=term-missing --cov-report=xml
-  coverage: '/\d+%/'  # Capture la couverture de code pour le badge
+  coverage: '/\d+%/'  
 
 deploy_stable:
   stage: deploy-stable
@@ -22,7 +22,7 @@ deploy_stable:
     - pip install --upgrade pip
     - pip install hatch
   script:
-    - echo "my-arithmetic-$USER deployment on stable servers"
+    - echo "my-arithmetic-faizandier deployment on stable servers"
     - hatch build
     - echo "Contenu du dossier dist/"
     - ls dist/
@@ -41,7 +41,7 @@ deploy_develop:
     - pip install --upgrade pip
     - pip install hatch
   script:
-    - echo "my-arithmetic-$USER deployment on develop branch (non-stable servers)"
+    - echo "my-arithmetic-faizandier deployment on develop branch (non-stable servers)"
     - hatch build
     - echo "Contenu du dossier dist/ pour la branche develop"
     - ls dist/
