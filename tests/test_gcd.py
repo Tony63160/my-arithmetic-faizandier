@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 import unittest
-from src.my_arithmetic_faizandier.fonction import gcd
+from src.my_arithmetic_faizandier import gcd
 
 class TestGCD(unittest.TestCase):
     def test_gcd(self):
