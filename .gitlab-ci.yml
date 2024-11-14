@@ -9,4 +9,5 @@ test:
     - pip install --upgrade pip
     - pip install hatch  
   script:
-    - hatch test         
+    - pytest --cov=<nom_du_module> --cov-report=term-missing --cov-report=xml  # Remplacez <nom_du_module> par le nom de votre module principal
+  coverage: '/\d+%/'
