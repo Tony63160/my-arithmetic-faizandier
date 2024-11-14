@@ -1,6 +1,7 @@
 stages:
   - test
-  - deploy
+  - deploy-stable
+  - deploy-develop
 
 test:
   stage: test
@@ -10,21 +11,42 @@ test:
     - pip install --upgrade pip
     - pip install hatch pytest pytest-cov
   script:
-    - pytest --cov=src/my_arithmetic_faizandier --cov-report=term-missing --cov-report=xml  
-  coverage: '/\d+%/'
+    - pytest --cov=src/my_arithmetic_faizandier --cov-report=term-missing --cov-report=xml
+  coverage: '/\d+%/'  # Capture la couverture de code pour le badge
 
-deploy:
-  stage: deploy
+deploy_stable:
+  stage: deploy-stable
   image: python:3.12-alpine
   before_script:
     - apk add --no-cache gcc musl-dev python3-dev linux-headers
     - pip install --upgrade pip
-    - pip install hatch hatch-vcs
+    - pip install hatch
   script:
+    - echo "my-arithmetic-$USER deployment on stable servers"
     - hatch build
+    - echo "Contenu du dossier dist/"
     - ls dist/
   only:
     - tags
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 week
+
+deploy_develop:
+  stage: deploy-develop
+  image: python:3.12-alpine
+  before_script:
+    - apk add --no-cache gcc musl-dev python3-dev linux-headers
+    - pip install --upgrade pip
+    - pip install hatch
+  script:
+    - echo "my-arithmetic-$USER deployment on develop branch (non-stable servers)"
+    - hatch build
+    - echo "Contenu du dossier dist/ pour la branche develop"
+    - ls dist/
+  only:
+    - develop
   artifacts:
     paths:
       - dist/
