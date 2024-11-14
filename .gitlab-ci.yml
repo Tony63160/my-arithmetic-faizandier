@@ -10,10 +10,8 @@ test:
     - pip install --upgrade pip
     - pip install hatch pytest pytest-cov
   script:
-    - pytest --cov=test_gcd.py --cov-report=term-missing --cov-report=xml  
+    - pytest --cov=src/my_arithmetic_faizandier --cov-report=term-missing --cov-report=xml  
   coverage: '/\d+%/'
-
-
 
 deploy:
   stage: deploy
@@ -23,7 +21,11 @@ deploy:
     - pip install --upgrade pip
     - pip install hatch hatch-vcs
   script:
-    - hatch build  
-    - ls dist/     
+    - hatch build
+    - ls dist/
   only:
-    - tags  
+    - tags
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 week
