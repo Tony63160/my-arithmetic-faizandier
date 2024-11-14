@@ -9,5 +9,5 @@ test:
     - pip install --upgrade pip
     - pip install hatch  
   script:
-    - pytest --cov=<nom_du_module> --cov-report=term-missing --cov-report=xml  # Remplacez <nom_du_module> par le nom de votre module principal
+    - pytest --cov=test_gcd.py --cov-report=term-missing --cov-report=xml  # Remplacez <nom_du_module> par le nom de votre module principal
   coverage: '/\d+%/'
