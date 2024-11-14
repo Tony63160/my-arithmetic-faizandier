@@ -31,6 +31,10 @@ Documentation = "https://github.com/tony/my-arithmetic-faizandier#readme"
 Issues = "https://github.com/tony/my-arithmetic-faizandier/issues"
 Source = "https://github.com/tony/my-arithmetic-faizandier"
 
+
+[tool.hatch.metadata]
+version = "plugin:hatch_vcs"
+
 [tool.hatch.version]
 path = "src/my_arithmetic_faizandier/__about__.py"
 

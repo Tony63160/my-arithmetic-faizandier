@@ -1,5 +1,6 @@
 stages:
   - test
+  - deploy
 
 test:
   stage: test
@@ -7,7 +8,22 @@ test:
   before_script:
     - apk add --no-cache gcc musl-dev python3-dev linux-headers
     - pip install --upgrade pip
-    - pip install hatch pytest pytest-cov  
+    - pip install hatch pytest pytest-cov
   script:
-    - pytest --cov=test_gcd.py --cov-report=term-missing --cov-report=xml  
+    - pytest --cov=<nom_du_module> --cov-report=term-missing --cov-report=xml  # Remplacez <nom_du_module> par le nom de votre module
   coverage: '/\d+%/'
+
+
+
+  deploy:
+  stage: deploy
+  image: python:3.12-alpine
+  before_script:
+    - apk add --no-cache gcc musl-dev python3-dev linux-headers
+    - pip install --upgrade pip
+    - pip install hatch hatch-vcs
+  script:
+    - hatch build  
+    - ls dist/     
+  only:
+    - tags  
