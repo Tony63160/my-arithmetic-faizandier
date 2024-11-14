@@ -12,9 +12,6 @@ class TestGCD(unittest.TestCase):
         self.assertEqual(gcd(0, 10), 10)
         self.assertEqual(gcd(10, 0), 10)
         
-    def test_false():
-        return Falses
-
 if __name__ == "__main__":
     unittest.main()
 
